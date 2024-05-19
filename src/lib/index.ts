@@ -248,7 +248,7 @@ export class MedusaClient {
          path: '/store/auth', 
          method: 'POST', 
          body: { email, password },
-         logLevel: 'silent'
+         logLevel: 'verbose'
       })
       if (!response || !response.ok) return false
       // @ts-ignore, getSetCookie() is new and not yet in the type definition for Headers, but it is valid
