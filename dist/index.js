@@ -109,6 +109,7 @@ export class MedusaClient {
         return event;
     }
     async parseAuthCookie(setCookie = [], locals, cookies) {
+        console.log("running setCookie in parseAuthCookie: ", setCookie);
         if (!setCookie)
             return false;
         try {
@@ -121,7 +122,7 @@ export class MedusaClient {
                     cookies.set('sid', locals.sid, {
                         path: '/',
                         maxAge: maxAge,
-                        sameSite: 'strict',
+                        // sameSite: 'strict',
                         httpOnly: true,
                         secure: true
                     });
@@ -153,7 +154,7 @@ export class MedusaClient {
             body: { email, password },
             logLevel: 'verbose'
         });
-        console.log("response:", response);
+        console.log("response in login: ", response?.statusText);
         if (!response || !response.ok)
             return false;
         // @ts-ignore, getSetCookie() is new and not yet in the type definition for Headers, but it is valid
