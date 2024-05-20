@@ -207,8 +207,8 @@ export class MedusaClient {
 
    async parseAuthCookie(setCookie:[] = [], locals:App.Locals , cookies:Cookies) {
       if (!setCookie) return false
-      console.log("running in parseAuthCookie: ", setCookie);
       try {
+         console.log("running in parseAuthCookie: ", setCookie);
          for (let rawCookie of setCookie) {
             let parsedCookie = cookie.parse(rawCookie)
             if (parsedCookie['connect.sid']) {
