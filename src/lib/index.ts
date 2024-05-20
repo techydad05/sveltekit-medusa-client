@@ -206,6 +206,7 @@ export class MedusaClient {
    }
 
    async parseAuthCookie(setCookie:[] = [], locals:App.Locals , cookies:Cookies) {
+      console.log("running setCookie in parseAuthCookie: ", setCookie);
       if (!setCookie) return false
       try {
          for (let rawCookie of setCookie) {
@@ -217,7 +218,7 @@ export class MedusaClient {
                cookies.set('sid', locals.sid, {
                   path: '/',
                   maxAge: maxAge,
-                  sameSite: 'strict',
+                  // sameSite: 'strict',
                   httpOnly: true,
                   secure: true
                })
@@ -250,7 +251,7 @@ export class MedusaClient {
          body: { email, password },
          logLevel: 'verbose'
       })
-      console.log("response:", response)
+      console.log("response in login: ", response?.statusText)
       if (!response || !response.ok) return false
       // @ts-ignore, getSetCookie() is new and not yet in the type definition for Headers, but it is valid
       return await this.parseAuthCookie(response.headers?.getSetCookie(), locals, cookies).catch(() => false)
