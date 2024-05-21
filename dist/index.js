@@ -122,7 +122,7 @@ export class MedusaClient {
                     cookies.set('sid', locals.sid, {
                         path: '/',
                         maxAge: maxAge,
-                        sameSite: 'lax',
+                        sameSite: 'strict',
                         httpOnly: true,
                         secure: true
                     });
@@ -149,11 +149,12 @@ export class MedusaClient {
         // returns true or false based on success
         const response = await this.query({
             locals,
-            path: '/store/auth',
+            path: 'https://medusa.idevsites.com/store/auth',
             method: 'POST',
             body: { email, password },
             logLevel: 'verbose'
         });
+        console.log("running in login: ", response);
         if (!response || !response.ok)
             return false;
         console.log("running in login: ", response.headers);
