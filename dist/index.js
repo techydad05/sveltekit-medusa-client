@@ -149,7 +149,7 @@ export class MedusaClient {
         // returns true or false based on success
         const response = await this.query({
             locals,
-            path: 'https://medusa.idevsites.com/store/auth',
+            path: '/store/auth',
             method: 'POST',
             body: { email, password },
             logLevel: 'verbose'
