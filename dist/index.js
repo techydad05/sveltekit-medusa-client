@@ -66,6 +66,7 @@ export class MedusaClient {
         if (Object.keys(body).length != 0) {
             headers['Content-Type'] = 'application/json';
         }
+        console.log('running in query: ', headers);
         return await this.superFetch.query({
             url: `${this.url}${path}`,
             method,
@@ -154,7 +155,6 @@ export class MedusaClient {
             body: { email, password },
             logLevel: 'verbose'
         });
-        console.log("running in login: ", response);
         if (!response || !response.ok)
             return false;
         console.log("running in login: ", response.headers);
